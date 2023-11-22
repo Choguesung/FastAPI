@@ -1,4 +1,5 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
 from pymongo import MongoClient
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -18,6 +19,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+class Post(BaseModel):
+    title: str
+    content: str
+    
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
@@ -34,5 +39,10 @@ def get_first_title():
         return {"error": "Document not found"}
     
 @app.post("/post")
-def post():
-    return 0
+def create_post(post: Post):
+    # FastAPI의 모델 검증을 통과한 데이터를 MongoDB에 삽입
+    result = collection.insert_one(post.dict())
+    if result.inserted_id:
+        return {"message": "Post created successfully", "post_id": str(result.inserted_id)}
+    else:
+        raise HTTPException(status_code=500, detail="Failed to create post")

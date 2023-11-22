@@ -32,3 +32,7 @@ def get_first_title():
         return {"title": title}
     else:
         return {"error": "Document not found"}
+    
+@app.post("/post")
+def post():
+    return 0

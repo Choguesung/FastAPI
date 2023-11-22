@@ -37,7 +37,8 @@ def get_first_title():
         return {"title": title}
     else:
         return {"error": "Document not found"}
-    
+
+# 리액트에서 글제목, 내용받아서 몽고 디비에 올리는 코드임
 @app.post("/post")
 def create_post(post: Post):
     # FastAPI의 모델 검증을 통과한 데이터를 MongoDB에 삽입

@@ -2,8 +2,6 @@ import requests
 from urllib import parse
 
 apiKey = 'RGAPI-14f4bfae-0c4f-4731-931c-792b868acd69'
-# username = 'Zealot'
-champ = 'Thresh' # 원하는 챔프(머신러닝결과값)
 
 def search(nickname):
     # 랭크 n경기 매치아이디 가져오기
@@ -22,7 +20,6 @@ def search(nickname):
     r = r.json()
 
     rankId = r
-    print(rankId)
 
     win = []
     deaths = []
@@ -35,7 +32,6 @@ def search(nickname):
         part = info['participants'] # info 데이터에서 유저들의 정보 추출
         for j in range(0,10): # 총 10명의 유저중 내가 원하는 puuid값을 가진 유저를 추출
               if part[j]['puuid'] == puuid:
-                 if part[j]['championName'] == champ: # 유저가 champ를 플레이했던 매치데이터를 추출
                     win.append(part[j]['win'])
                     deaths.append(part[j]['deaths'])
                     kills.append(part[j]['kills'])

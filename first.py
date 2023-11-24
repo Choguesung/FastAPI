@@ -2,11 +2,14 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from pymongo import MongoClient
 from fastapi.middleware.cors import CORSMiddleware
+import os
 
 app = FastAPI()
 
+MongoKey = os.environ.get('MongoDBKEY')
+
 # MongoDB 연결
-client = MongoClient('mongodb+srv://admin:pb9tAfqU2EulBWfG@cluster0.gnxrofg.mongodb.net/?retryWrites=true&w=majority',tlsInsecure=True)
+client = MongoClient(MongoKey,tlsInsecure=True)
 db = client["forum"]
 collection = db["post"]
 

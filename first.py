@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from pymongo import MongoClient
 from fastapi.middleware.cors import CORSMiddleware
-
+import riotapi
 
 app = FastAPI()
 
@@ -23,6 +23,9 @@ app.add_middleware(
 class Post(BaseModel):
     title: str
     content: str
+
+class RiotPost(BaseModel):
+    nickname: str
     
 @app.get("/")
 def read_root():
@@ -48,3 +51,10 @@ def create_post(post: Post):
         return {"message": "Post created successfully", "post_id": str(result.inserted_id)}
     else:
         raise HTTPException(status_code=500, detail="Failed to create post")
+    
+# 서버로 닉네임 쏴주기
+@app.post("/riotpost")
+def create_post(post: RiotPost):
+    result = riotapi(post)
+    return {"result" : result}
+

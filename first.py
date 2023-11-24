@@ -54,7 +54,12 @@ def create_post(post: Post):
     
 # 서버로 닉네임 쏴주기
 @app.post("/riotpost")
-def create_post(post: RiotPost):
-    result = riotapi(post)
-    return {"result" : str(result)}
+def riot_post(post: RiotPost):
+    # FastAPI의 모델 검증을 통과한 데이터를 MongoDB에 삽입
+    
+    result = riotapi.search('zealot')
+    if result.inserted_id:
+        return {"message": "Post created successfully", "post_id": str(result)}
+    else:
+        raise HTTPException(status_code=500, detail="Failed to create post")
 

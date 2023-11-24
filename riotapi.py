@@ -41,4 +41,4 @@ def search(nickname):
                     kills.append(part[j]['kills'])
                     # 승리, 킬뎃값 넣어주기
 
-    return win
+    return 'legend'

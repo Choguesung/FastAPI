@@ -56,5 +56,5 @@ def create_post(post: Post):
 @app.post("/riotpost")
 def create_post(post: RiotPost):
     result = riotapi(post)
-    return {"result" : result}
+    return {"result" : str(result)}
 

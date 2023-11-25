@@ -38,3 +38,5 @@ def search(nickname):
                     # 승리, 킬뎃값 넣어주기
 
     return win
+
+print(search('페이커'))

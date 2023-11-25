@@ -57,7 +57,7 @@ def create_post(post: Post):
 def riot_post(post: RiotPost):
     # FastAPI의 모델 검증을 통과한 데이터를 MongoDB에 삽입
     
-    result = riotapi.search(post)
+    result = riotapi.search('zealot')
 
     return {"message": "Post created successfully", "post_id": str(result)}
 

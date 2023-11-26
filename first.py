@@ -58,5 +58,5 @@ def riot_post(post: RiotPost):
 
     result = riotapi.search(str(post.nickname))
 
-    return {"result": str(result)}
+    return {"result": result}
 

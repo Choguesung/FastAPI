@@ -19,7 +19,6 @@ r = requests.get(rankUrl)
 r = r.json()
 
 rankId = r
-print(rankId)
 
 win = []
 deaths = []
@@ -37,7 +36,4 @@ for i in rankId:
             kills.append(part[j]['kills'])
             # 승리, 킬뎃값 넣어주기
 
-print(win)
-print(deaths)
-print(kills)
-print()
+print(win[0]) 

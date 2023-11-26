@@ -58,5 +58,5 @@ def riot_post(post: RiotPost):
 
     result = riotapi.search(str(post.nickname))
 
-    return {"message": "Post created successfully", "post_id": str(result)}
+    return {"result": str(result)}
 

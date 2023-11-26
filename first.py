@@ -46,7 +46,7 @@ def get_first_title():
 @app.post("/post")
 def create_post(post: Post):
     # FastAPI의 모델 검증을 통과한 데이터를 MongoDB에 삽입
-    result = collection.insert_one(post.dict())
+    result = collection.insert_one(post)
     if result.inserted_id:
         return {"message": "Post created successfully", "post_id": str(result.inserted_id)}
     else:
@@ -55,9 +55,8 @@ def create_post(post: Post):
 # 서버로 닉네임 쏴주기
 @app.post("/riotpost")
 def riot_post(post: RiotPost):
-    # FastAPI의 모델 검증을 통과한 데이터를 MongoDB에 삽입
-    
-    result = riotapi.search('leesangho')
+
+    result = riotapi.search(str(post.nickname))
 
     return {"message": "Post created successfully", "post_id": str(result)}
 

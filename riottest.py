@@ -3,7 +3,7 @@ import requests
 from urllib import parse
 
 apiKey = 'RGAPI-63aae63d-4a2d-4f91-a78c-8922f594adcd'
-username = '김갑복' # 유저아이디
+username = 'hide on bush' # 유저아이디
 
 id = parse.quote(username) # 아이디를 URL 인코딩
 
@@ -40,3 +40,4 @@ for i in rankId:
 print(win)
 print(deaths)
 print(kills)
+print()

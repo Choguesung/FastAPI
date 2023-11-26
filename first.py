@@ -23,9 +23,6 @@ app.add_middleware(
 class Post(BaseModel):
     title: str
     content: str
-
-class RiotPost(BaseModel):
-    nickname: str
     
 @app.get("/")
 def read_root():
@@ -53,10 +50,10 @@ def create_post(post: Post):
         raise HTTPException(status_code=500, detail="Failed to create post")
     
 # 서버로 닉네임 쏴주기
-@app.post("/riotpost")
-def riot_post(post: RiotPost):
+@app.post("/riotpost/{nickname}")
+def riot_post(nickname):
 
-    result = riotapi.search(str(post.nickname))
+    result = riotapi.search(str(nickname))
 
     return {"result": result}
 

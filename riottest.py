@@ -2,7 +2,7 @@ import pandas as pd
 import requests
 from urllib import parse
 
-apiKey = 'RGAPI-63aae63d-4a2d-4f91-a78c-8922f594adcd'
+apiKey = 'RGAPI-b3413cff-6a17-4df3-ab84-86c20b222d1c'
 username = 'hide on bush' # 유저아이디
 
 id = parse.quote(username) # 아이디를 URL 인코딩

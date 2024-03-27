@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from pymongo import MongoClient
 from fastapi.middleware.cors import CORSMiddleware
+from bson.json_util import dumps
 
 app = FastAPI()
 
@@ -15,10 +16,11 @@ class Item(BaseModel):
     description: str
 
 # Create (데이터 삽입)
-# @app.post("/items/")
-# async def create_item(item: Item):
-#     result = collection.insert_one(item.dict())
-#     return {"id": str(result.inserted_id), "data": item}
+@app.post("/items/create/")
+async def create_item(item: Item):
+    result = collection.insert_one(item.dict())
+    return {"id": str(result.inserted_id), "data": item}
+
 
 # Read (데이터 조회)
 @app.get("/items/{item_id}")
@@ -46,10 +48,11 @@ async def delete_item(item_id: str):
         return {"id": item_id, "status": "deleted"}
     else:
         raise HTTPException(status_code=404, detail="Item not found")
-    
+
+# Read all items (모든 데이터 조회)
 @app.get("/items/")
 async def read_all_items():
     items = []
     for item in collection.find():
         items.append(item)
-    return items
+    return dumps(items)

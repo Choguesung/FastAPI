@@ -46,3 +46,10 @@ async def delete_item(item_id: str):
         return {"id": item_id, "status": "deleted"}
     else:
         raise HTTPException(status_code=404, detail="Item not found")
+    
+@app.get("/items/")
+async def read_all_items():
+    items = []
+    for item in collection.find():
+        items.append(item)
+    return items

@@ -15,10 +15,10 @@ class Item(BaseModel):
     description: str
 
 # Create (데이터 삽입)
-@app.post("/items/")
-async def create_item(item: Item):
-    result = collection.insert_one(item.dict())
-    return {"id": str(result.inserted_id), "data": item}
+# @app.post("/items/")
+# async def create_item(item: Item):
+#     result = collection.insert_one(item.dict())
+#     return {"id": str(result.inserted_id), "data": item}
 
 # Read (데이터 조회)
 @app.get("/items/{item_id}")

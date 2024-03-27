@@ -7,7 +7,7 @@ import riotapi
 app = FastAPI()
 
 # MongoDB 연결
-client = MongoClient('mongodb+srv://admin:pb9tAfqU2EulBWfG@cluster0.gnxrofg.mongodb.net/?retryWrites=true&w=majority',tlsInsecure=True)
+client = MongoClient('mongodb+srv://admin:qwer1234@cluster0.yqujlrz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',tlsInsecure=True)
 db = client["forum"]
 collection = db["post"]
 

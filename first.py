@@ -8,8 +8,8 @@ app = FastAPI()
 
 # MongoDB 연결
 client = MongoClient('mongodb+srv://admin:qwer1234@cluster0.yqujlrz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',tlsInsecure=True)
-db = client["forum"]
-collection = db["post"]
+db = client["test"]
+collection = db["test"]
 
 # CORS 설정 추가
 app.add_middleware(
@@ -23,6 +23,9 @@ app.add_middleware(
 class Post(BaseModel):
     title: str
     content: str
+
+class Nickname(BaseModel):
+    nickname: str
     
 @app.get("/")
 def read_root():
@@ -49,11 +52,17 @@ def create_post(post: Post):
     else:
         raise HTTPException(status_code=500, detail="Failed to create post")
     
-# 서버로 닉네임 쏴주기
-@app.post("/riotpost/{nickname}")
-def riot_post(nickname):
+# 서버로 닉네임 + 태그라인
+@app.get("/riotpost/{nickname}/{tagline}")
+async def riot_post(nickname: str, tagline: str):
 
-    result = riotapi.search(str(nickname))
+    result = riotapi.search(str(nickname),str(tagline))
 
     return {"result": result}
 
+@app.get("/isplayed/{nickname}/{tagline}")
+async def riot_post(nickname: str, tagline: str):
+
+    result = riotapi.is_played(str(nickname),str(tagline))
+
+    return {"result": result}

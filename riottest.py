@@ -2,12 +2,15 @@ import pandas as pd
 import requests
 from urllib import parse
 
-apiKey = 'RGAPI-b3413cff-6a17-4df3-ab84-86c20b222d1c'
-username = 'hide on bush' # 유저아이디
+apiKey = 'RGAPI-69988f87-96e5-48d2-b8f2-f47c89d9bd97'
+username = '허거덩' # 유저아이디
+tagline = '0303'
 
 id = parse.quote(username) # 아이디를 URL 인코딩
+tagline = parse.quote(tagline)
 
-url = 'https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + id +'?api_key=' + apiKey #puuid값을 가져오기 위한 주소
+# url = 'https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + id +'?api_key=' + apiKey #puuid값을 가져오기 위한 주소
+url = 'https://asia.api.riotgames.com/riot/account/v1/accounts/by-riot-id/' + id +'/'+ '0303' + '?api_key=' + apiKey #puuid값을 가져오기 위한 주소
 r = requests.get(url)
 r = r.json()
 puuid = r['puuid'] # 해당 유저의 puuid 값 가져오기
@@ -36,4 +39,4 @@ for i in rankId:
             kills.append(part[j]['kills'])
             # 승리, 킬뎃값 넣어주기
 
-print(win[0]) 
+print(puuid) 

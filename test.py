@@ -22,7 +22,7 @@ async def create_item(item: Item):
     return {"id": str(result.inserted_id), "data": item}
 
 
-# Read (데이터 조회)
+# Read (데이터 조회) 
 @app.get("/items/{item_id}")
 async def read_item(item_id: str):
     item = collection.find_one({"_id": item_id})

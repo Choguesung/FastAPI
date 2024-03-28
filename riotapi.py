@@ -1,15 +1,16 @@
 import requests
 from urllib import parse
 
-apiKey = 'RGAPI-b3413cff-6a17-4df3-ab84-86c20b222d1c'
+apiKey = 'RGAPI-ba2b5a23-0f76-4374-a6d8-76def063e38c'
 
-def search(nickname):
+def search(nickname,tagline):
     # 랭크 n경기 매치아이디 가져오기
     username = nickname
 
     id = parse.quote(username) # 아이디를 URL 인코딩
 
-    url = 'https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + id +'?api_key=' + apiKey #puuid값을 가져오기 위한 주소
+    # url = 'https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + id +'?api_key=' + apiKey #puuid값을 가져오기 위한 주소
+    url = 'https://asia.api.riotgames.com/riot/account/v1/accounts/by-riot-id/' + id +'/'+ tagline + '?api_key=' + apiKey #puuid값을 가져오기 위한 주소
     r = requests.get(url)
     r = r.json()
     puuid = r['puuid'] # 해당 유저의 puuid 값 가져오기
@@ -38,3 +39,23 @@ def search(nickname):
                     # 승리, 킬뎃값 넣어주기
 
     return win
+
+def is_played(nickname,tagline):
+     # 랭크 n경기 매치아이디 가져오기
+    username = nickname
+
+    id = parse.quote(username) # 아이디를 URL 인코딩
+
+    # url = 'https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + id +'?api_key=' + apiKey #puuid값을 가져오기 위한 주소
+    url = 'https://asia.api.riotgames.com/riot/account/v1/accounts/by-riot-id/' + id +'/'+ tagline + '?api_key=' + apiKey #puuid값을 가져오기 위한 주소
+    r = requests.get(url)
+    r = r.json()
+    puuid = r['puuid'] # 해당 유저의 puuid 값 가져오기
+
+    rankUrl = 'https://kr.api.riotgames.com/lol/spectator/v5/active-games/by-summoner/' + puuid + '?api_key='+ apiKey
+    r = requests.get(rankUrl)
+    r = r.json()
+
+    rankId = r
+
+    return r

@@ -2,7 +2,7 @@ import pandas as pd
 import requests
 from urllib import parse
 
-apiKey = 'RGAPI-69988f87-96e5-48d2-b8f2-f47c89d9bd97'
+apiKey = 'RGAPI-ca891248-f5b1-41f5-b38f-30460ba86d1f'
 username = '허거덩' # 유저아이디
 tagline = '0303'
 

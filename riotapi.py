@@ -1,7 +1,7 @@
 import requests
 from urllib import parse
 
-apiKey = 'RGAPI-ba2b5a23-0f76-4374-a6d8-76def063e38c'
+apiKey = 'RGAPI-ca891248-f5b1-41f5-b38f-30460ba86d1f'
 
 def search(nickname,tagline):
     # 랭크 n경기 매치아이디 가져오기
@@ -55,7 +55,5 @@ def is_played(nickname,tagline):
     rankUrl = 'https://kr.api.riotgames.com/lol/spectator/v5/active-games/by-summoner/' + puuid + '?api_key='+ apiKey
     r = requests.get(rankUrl)
     r = r.json()
-
-    rankId = r
 
     return r

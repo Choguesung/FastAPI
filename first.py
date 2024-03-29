@@ -65,4 +65,9 @@ async def riot_post(nickname: str, tagline: str):
 
     result = riotapi.is_played(str(nickname),str(tagline))
 
-    return {"result": result}
+    try:
+        result["status"]
+        return {"result" : "게임중이 아닙니다"}
+    
+    except:
+        return {"result" : result}

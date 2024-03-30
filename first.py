@@ -60,6 +60,7 @@ async def riot_post(nickname: str, tagline: str):
 
     return {"result": result}
 
+# 특정 유저가 게임중이면, 게임중인 데이터, 게임중이 아니면 게임중이 아니라고 알림
 @app.get("/isplayed/{nickname}/{tagline}")
 async def riot_post(nickname: str, tagline: str):
 

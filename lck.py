@@ -16,7 +16,7 @@ class Item(BaseModel):
     name: str
     description: str
 
-# 팀 이름으로 조회
+# 팀 이름으로 조회함
 @app.get("/team/{name}")
 async def read_team(name: str):
     item = team_collection.find_one({"name": name}, {"_id": 0})

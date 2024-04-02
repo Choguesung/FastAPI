@@ -7,6 +7,14 @@ import os
 
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # 모든 origin 허용. 필요에 따라 변경 가능
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "PUT", "DELETE"],
+    allow_headers=["*"],
+)
+
 mongodb_uri = os.environ.get('MONGODB_URL')
 client = MongoClient(mongodb_uri,tlsInsecure=True)
 

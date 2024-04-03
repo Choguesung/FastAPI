@@ -68,6 +68,16 @@ async def get_player_by_team(team_name: str):
     else:
         raise HTTPException(status_code=404, detail="Item not found")
     
+@app.get("/getteamlist")
+async def get_teamlist():
+    teams = list(team_collection.find({}, {"_id": 0}))
+
+    if teams:
+        return teams
+    else:
+        raise HTTPException(status_code=404, detail="Item not found")
+
+    
 
 # 특정 유저가 게임중이면, 게임중인 데이터, 게임중이 아니면 게임중이 아니라고 알림
 @app.get("/isplayed/{nickname}/{tagline}")

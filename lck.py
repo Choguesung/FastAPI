@@ -63,8 +63,8 @@ async def get_player_by_team(team_name: str):
     players = list(players)
 
     if players:
-        processed_players = [{"name": player["name"]} for player in players]
-        return processed_players
+        # processed_players = [{"name": player["name"]} for player in players]
+        return players
     else:
         raise HTTPException(status_code=404, detail="Item not found")
     

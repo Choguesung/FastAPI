@@ -1,7 +1,7 @@
 import requests
 from urllib import parse
 
-apiKey = 'RGAPI-90b36030-0add-4eff-8d4c-03822af5c7b7'
+apiKey = 'RGAPI-73883a37-93cc-4eb0-bcf4-6cf96a84e913'
 
 def search(nickname,tagline):
     # 랭크 n경기 매치아이디 가져오기

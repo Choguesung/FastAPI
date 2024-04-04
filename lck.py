@@ -87,7 +87,26 @@ async def riot_post(nickname: str, tagline: str):
 
     try:
         result["status"]
-        return {"result" : "게임중이 아닙니다"}
+        return {"result" : "404"}
     
     except:
         return {"result" : result}
+
+# 현재 게임중인 선수의 gameId를 딕셔너리 형태로 반환
+@app.get("/isplayedpro")
+async def is_played_pro():
+    players = list(player_collection.find({},{"_id":0, "name":1, "nickname":1, "tagline":1}))
+    game_players_dict = {}
+
+    for player in players:
+        result = riotapi.is_played(player["nickname"],player["tagline"])
+
+        # 게임이 존재하면
+        if "status" not in result:
+            game_id = result["gameId"]
+            if game_id not in game_players_dict:
+                game_players_dict[game_id] = []
+            game_players_dict[game_id].append(player)
+            
+    return game_players_dict
+

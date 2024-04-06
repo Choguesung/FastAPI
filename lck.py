@@ -95,7 +95,7 @@ async def riot_post(nickname: str, tagline: str):
 # 현재 게임중인 선수의 gameId를 딕셔너리 형태로 반환
 @app.get("/isplayedpro")
 async def is_played_pro():
-    players = list(player_collection.find({},{"_id":0, "name":1, "nickname":1, "tagline":1}))
+    players = list(player_collection.find({},{"_id":0, "name":1, "team":1, "position":1, "nickname":1, "tagline":1}))
     game_players_dict = {}
 
     for player in players:

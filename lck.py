@@ -16,7 +16,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-mongodb_uri = os.environ.get('MONGODB_URL')
+# mongodb_uri = os.environ.get('MONGODB_URL')
+mongodb_uri = "mongodb+srv://admin:qwer1234@cluster0.yqujlrz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 client = MongoClient(mongodb_uri,tlsInsecure=True)
 
 db = client["lck"]

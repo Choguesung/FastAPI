@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from bson.json_util import dumps
 import os
 import riotapi
+import asyncio
 
 app = FastAPI()
 
@@ -95,6 +96,7 @@ async def riot_post(nickname: str, tagline: str):
 # 현재 게임중인 선수의 gameId를 딕셔너리 형태로 반환
 @app.get("/isplayedpro")
 async def is_played_pro():
+    # 모든 선수를 조회하여 players에 저장해둠 -> 비효율 근데 이건 방법이 없을듯
     players = list(player_collection.find({},{"_id":0, "name":1, "team":1, "position":1, "nickname":1, "tagline":1}))
     game_players_dict = {}
 

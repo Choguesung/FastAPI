@@ -98,6 +98,7 @@ async def riot_post(nickname: str, tagline: str):
 async def is_played_pro():
     # 모든 선수를 조회하여 players에 저장해둠 -> 비효율 근데 이건 방법이 없을듯
     players = list(player_collection.find({},{"_id":0, "name":1, "team":1, "position":1, "nickname":1, "tagline":1}))
+    # "gamdId" = [playerList] Dictionary containing a list of player names by GameID
     game_players_dict = {}
 
     for player in players:
